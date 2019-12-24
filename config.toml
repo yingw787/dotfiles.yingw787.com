@@ -18,18 +18,18 @@ googleAnalytics = ""
     # Optional #
     font = "Space Mono" # Available fonts include: ["Space Mono"].
     titleImage = "img/image01.png"
-    titleTextColor = "#FFFFFF"
-    bodyTextColor = "#FFFFFF"
-    backgroundColor = "#1C76B8"
+    titleTextColor = "#93a1a1"
+    bodyTextColor = "#93a1a1"
+    backgroundColor = "#002b36"
 
     formInputColor = "#666666"
-    formBackgroundColor = "#FFFFFF"
+    formBackgroundColor = "#93a1a1"
     formSelectedColor = "#1ABC9C"
 
-    buttonColor = "#FFFFFF"
+    buttonColor = "#93a1a1"
     buttonBackgroundColor = "#3BACFF"
 
-    footerTextColor = "#FFFFFF"
+    footerTextColor = "#93a1a1"
 
     mailchimpURL = ""
     mailchimpBotDecoyLink = ""
