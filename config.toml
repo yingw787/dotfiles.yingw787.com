@@ -1,3 +1,35 @@
-baseURL = "http://example.org/"
+# Required
+baseURL = "https://dotfiles.yingw787.com"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Dotfiles"
+theme = "carrd50"
+
+# Optional
+googleAnalytics = ""
+
+[params]
+    # Required #
+    author = "Ying Wang"
+    email = "me@yingw787.com"
+    description = "Website to host my dotfiles."
+    copyrightYear = "Forever"
+    favicon = "img/favicon.png"
+
+    # Optional #
+    font = "Space Mono" # Available fonts include: ["Space Mono"].
+    titleImage = "img/image01.png"
+    titleTextColor = "#FFFFFF"
+    bodyTextColor = "#FFFFFF"
+    backgroundColor = "#1C76B8"
+
+    formInputColor = "#666666"
+    formBackgroundColor = "#FFFFFF"
+    formSelectedColor = "#1ABC9C"
+
+    buttonColor = "#FFFFFF"
+    buttonBackgroundColor = "#3BACFF"
+
+    footerTextColor = "#FFFFFF"
+
+    mailchimpURL = ""
+    mailchimpBotDecoyLink = ""
