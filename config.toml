@@ -12,7 +12,7 @@ googleAnalytics = ""
     author = "Ying Wang"
     email = "me@yingw787.com"
     description = "Website to host my dotfiles."
-    copyrightYear = "Forever"
+    copyrightYear = "2020"
     favicon = "img/favicon.png"
 
     # Optional #

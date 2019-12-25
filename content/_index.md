@@ -20,4 +20,8 @@ __________
 
 Run the command below to get started:
 
-`wget -qO- https://dotfiles.yingw787.com/setup.sh | bash`
+```bash
+[sudo su;] # if not `root`
+[export HOME=$YOUR_REGULAR_HOME;] # if not `root`
+wget -qO- https://dotfiles.yingw787.com/setup.sh | bash
+```
