@@ -2,7 +2,7 @@
 #
 # Dotfiles setup from `git@github.com:yingw787/dotfiles.git`.
 #
-# Commit ID (SHA-1): '873022eaa56128499d68753e8a30bcad742a58b1'
+# Commit ID (SHA-1): '0c9f7ff9521f738bbbfc8b13e599a34574d1af88'
 #
 # This script is intended to be hosted at https://dotfiles.yingw787.com for
 # configuring Ying's personal development setup.
@@ -21,9 +21,14 @@ LOG_PREFIX="[https://dotfiles.yingw787.com]"
 # candidate and stable PPAs are available. The only way to lock in a specific
 # version is to build `git` from source, which I do not think is necessary at
 # this time.
-echo "$LOG_PREFIX Installing latest stable `git` for distribution."
-add-apt-repository ppa:git-core/ppa
-apt-get install git
+echo "$LOG_PREFIX Install / check 'git' distribution."
+if ! [ -x "$(command -v git)" ];
+then
+    add-apt-repository ppa:git-core/ppa
+    apt-get install git
+else
+    echo "$LOG_PREFIX 'git' exists, skipping install."
+fi
 
 # `git` clone repository https://github.com/yingw787/dotfiles at HEAD to
 # directory on local.
@@ -37,12 +42,40 @@ repository="https://github.com/yingw787/dotfiles"
 destination="$HOME/dotfiles"
 
 echo "$LOG_PREFIX Cloning dotfiles repository $REPOSITORY to directory $destination."
-git clone \
-    --verbose \
-    --progress \
-    $repository $destination
+if ! [ -d $destination ];
+then
+    git clone --verbose --progress $repository $destination
+else
+    echo "$LOG_PREFIX 'dotfiles' directory exists, skipping git clone."
+fi
+
+# Log metadata about:
+# - `git` version
+# - Environment variable $HOME
+# - Location of `dotfiles` remote repository
+# - Location of `dotfiles` local repository
+GIT_VERSION=$(git --version)
+
+echo "$LOG_PREFIX 'git' installed."
+echo "$LOG_PREFIX 'git' install version: '$GIT_VERSION'"
+echo "$LOG_PREFIX env variable '\$HOME' is: '$HOME'"
+echo "$LOG_PREFIX Location of dotfiles remote repository is: '$repository'"
+echo "$LOG_PREFIX Location of dotfiles local repository is: '$destination'"
+
+install_script="$destination/ubuntu/setup-ubuntu.sh"
+
+# Manually checkpoint execution to exit or continue.
+quit_or_continue() {
+    while true; do
+        read -p "Initial setup completed. Continue to '$install_script'? [Y/n] " yn
+        case $yn in
+            [Yy]* ) echo "Continuing setup."; break;;
+            [Nn]* ) echo "Exiting."; exit;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+}
+quit_or_continue
 
 # Execute Ubuntu install #
-install_script="$destination/ubuntu/setup-ubuntu.sh"
-echo "$LOG_PREFIX Executing install script '$install_script'."
 bash $install_script
