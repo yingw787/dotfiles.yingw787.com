@@ -21,7 +21,16 @@ __________
 Run the command below to get started:
 
 ```bash
-[sudo su;] # if not `root`
-[export HOME=$YOUR_REGULAR_HOME;] # if not `root`
-wget -qO- https://dotfiles.yingw787.com/setup.sh | bash
+# On clean ubuntu-19.10-desktop-amd64 instance
+sudo apt update
+sudo apt list --upgradable
+sudo apt upgrade
+
+# Restart instance to install upgrades
+
+# Execute script
+wget -qO- \
+    https://dotfiles.yingw787.com/setup.sh \
+    > $HOME/setup.sh
+bash $HOME/setup.sh
 ```
