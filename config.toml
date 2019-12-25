@@ -17,7 +17,7 @@ googleAnalytics = ""
 
     # Optional #
     font = "Space Mono" # Available fonts include: ["Space Mono"].
-    titleImage = "img/image01.png"
+    titleImage = "img/image01.png" # As it turns out, this value doesn't matter at this commit, since theme `hugo-theme-carrd50` hardcodes `.Site.Params.titleImage` to be value "img/image01.png".
     titleTextColor = "#93a1a1"
     bodyTextColor = "#93a1a1"
     backgroundColor = "#002b36"
