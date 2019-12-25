@@ -32,5 +32,5 @@ sudo apt upgrade
 wget -qO- \
     https://dotfiles.yingw787.com/setup.sh \
     > $HOME/setup.sh
-bash $HOME/setup.sh
+[sudo] bash $HOME/setup.sh
 ```

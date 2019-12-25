@@ -2,7 +2,7 @@
 #
 # Dotfiles setup from `git@github.com:yingw787/dotfiles.git`.
 #
-# Commit ID (SHA-1): '557a62731aa99cddf00353369e8810416212f74c'
+# Commit ID (SHA-1): '873022eaa56128499d68753e8a30bcad742a58b1'
 #
 # This script is intended to be hosted at https://dotfiles.yingw787.com for
 # configuring Ying's personal development setup.
@@ -13,11 +13,6 @@
 # - User has `sudo` privileges (e.g. is root)
 
 LOG_PREFIX="[https://dotfiles.yingw787.com]"
-
-# Install system updates #
-echo "$LOG_PREFIX Installing system updates."
-apt-get update
-apt-get full-upgrade
 
 # Install latest version of `git` for this Ubuntu release #
 #
