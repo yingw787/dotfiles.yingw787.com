@@ -2,15 +2,19 @@
 #
 # Dotfiles setup from `git@github.com:yingw787/dotfiles.git`.
 #
-# Commit ID (SHA-1): 'ca7bad400c069d31adc667b643a40766fe2ac407'
+# Commit ID (SHA-1): 'cdd5ad26e61f4eb984ef887cb22d9cf748093611'
 #
 # This script is intended to be hosted at https://dotfiles.yingw787.com for
 # configuring Ying's personal development setup.
 #
 # Assumptions:
-# - Using Ubuntu Desktop 19.10 64-bit build
+# - Using Ubuntu Desktop 19.10.0 64-bit build
 # - Internet is reachable
 # - User has `sudo` privileges (e.g. is root)
+#
+# Usage:
+# - cat setup.sh | bash (for basic setup)
+# - bash setup.sh
 
 LOG_PREFIX="[https://dotfiles.yingw787.com]"
 
@@ -39,7 +43,10 @@ fi
 # Use `git remote set-url $REMOTE_NAME` in order to change HTTPS to SSH after
 # key registration.
 repository="https://github.com/yingw787/dotfiles"
-destination="$HOME/dotfiles"
+# Installing at directory $(pwd) to use context of the current directory,
+# instead of $HOME, since that changes with the user context (e.g. whether user
+# is run as 'sudo').
+destination="$(pwd)/dotfiles"
 
 echo "$LOG_PREFIX Cloning dotfiles repository $REPOSITORY to directory $destination."
 if ! [ -d $destination ];
@@ -51,14 +58,14 @@ fi
 
 # Log metadata about:
 # - `git` version
-# - Environment variable $HOME
+# - Environment variable $(pwd)
 # - Location of `dotfiles` remote repository
 # - Location of `dotfiles` local repository
 GIT_VERSION=$(git --version)
 
 echo "$LOG_PREFIX 'git' installed."
 echo "$LOG_PREFIX 'git' install version: '$GIT_VERSION'"
-echo "$LOG_PREFIX env variable '\$HOME' is: '$HOME'"
+echo "$LOG_PREFIX env variable '\$(pwd)' is: '$(pwd)'"
 echo "$LOG_PREFIX Location of dotfiles remote repository is: '$repository'"
 echo "$LOG_PREFIX Location of dotfiles local repository is: '$destination'"
 
@@ -67,11 +74,13 @@ install_script="$destination/ubuntu/setup-ubuntu.sh"
 # Manually checkpoint execution to exit or continue.
 quit_or_continue() {
     while true; do
-        read -p "Initial setup completed. Continue to '$install_script'? [Y/n] " yn
+        read -p "$LOG_PREFIX Initial setup completed. Continue to '$install_script'? [Y/n] " yn
         case $yn in
-            [Yy]* ) echo "Continuing setup."; break;;
-            [Nn]* ) echo "Exiting."; exit;;
-            * ) echo "Please answer yes or no.";;
+            [Yy]* ) echo "$LOG_PREFIX Continuing setup."; break;;
+            [Nn]* ) echo "$LOG_PREFIX Exiting."; exit;;
+            # If script is pipelined, then this is a good opportunity to halt
+            # execution in order to change contexts if necessary.
+            * ) echo "$LOG_PREFIX Exiting."; exit;;
         esac
     done
 }
